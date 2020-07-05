@@ -27,6 +27,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import {HttpClientModule} from '@angular/common/http';
 import { UsuarioService } from './services/usuario.service';
+import { GaleriaComponent } from './components/galeria/galeria.component';
+import { PostService } from './services/post.service';
 
 
 
@@ -37,7 +39,8 @@ import { UsuarioService } from './services/usuario.service';
     RegisterComponent,
     RegisterComponent,
     LogInComponent,
-    PostComponent
+    PostComponent,
+    GaleriaComponent
     
   ],
   imports: [
@@ -53,6 +56,7 @@ import { UsuarioService } from './services/usuario.service';
   providers: [AuthService,
     StorageService,
     UsuarioService,
+    PostService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
