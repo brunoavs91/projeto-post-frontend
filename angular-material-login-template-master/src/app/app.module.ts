@@ -26,6 +26,7 @@ import { StorageService } from './services/storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import {HttpClientModule} from '@angular/common/http';
+import { UsuarioService } from './services/usuario.service';
 
 
 
@@ -51,6 +52,7 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [AuthService,
     StorageService,
+    UsuarioService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

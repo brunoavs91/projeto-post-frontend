@@ -8,20 +8,20 @@
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+          <input matInput placeholder="Username" [(ngModel)] = 'usuario.nome' name="nome">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email">
+          <input matInput placeholder="Email" [(ngModel)] = 'usuario.email' name="email">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+          <input matInput placeholder="Password" [(ngModel)] = 'usuario.senha' name="senha" type="password">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Choose a role...</mat-label>
-          <mat-select [(value)]="selected">
+          <mat-label>Escolha  a Permissao...</mat-label>
+          <mat-select [(value)]="selectedRole">
             <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
             </mat-option>
           </mat-select>
@@ -29,8 +29,10 @@
 
       </mat-card-content>
 
-      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+      <button mat-stroked-button color="accent" class="btn-block" (click)='salvarUsuario()' 
+      routerLink="login" routerLinkActive="active">Register</button>
 
     </form>
   </mat-card>
 </div>
+<router-outlet></router-outlet>
