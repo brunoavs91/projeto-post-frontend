@@ -16,6 +16,10 @@ export class UsuarioService {
     return this.storage.getLocalUser().token;
   }
 
+  getEmail() : string{
+    return this.storage.getLocalUser().email;
+  }
+
   
 
   findByEmail(email : string) : Observable<UsuarioDTO>{
@@ -40,7 +44,7 @@ export class UsuarioService {
 
     const httpOptions : Object = {
       headers: new HttpHeaders({
-        'Authorization' : 'Bearer ' +  token,
+       
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=utf-8'
       })

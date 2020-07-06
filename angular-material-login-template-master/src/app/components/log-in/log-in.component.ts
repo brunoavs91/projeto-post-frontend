@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CredenciaisDTO } from 'src/app/models/credenciais.dto';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -15,7 +16,7 @@ export class LogInComponent implements OnInit {
     senha: ""
   };
 
-  constructor(public auth :AuthService, ) { }
+  constructor(public auth :AuthService, public router :Router ) { }
 
   ngOnInit() {
   }
@@ -27,7 +28,7 @@ export class LogInComponent implements OnInit {
       this.auth.successFullLogin(response.headers.get('Authorization'));
 
       console.log("chegou" + response)
-      
+      this.router.navigateByUrl('galeria');
      // this.navCtrl.navigateRoot('categorias');
 
     },

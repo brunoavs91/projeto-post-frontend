@@ -18,9 +18,9 @@ export class PostService {
     return this.storage.getLocalUser().token;
   }
 
-  postImage(image : FormData, post : PostDTO) : Observable<any> {
+  postImage(image : FormData) : Observable<any> {
     let token = this.getToken();
-    post.email= this.storage.getLocalUser().email;
+    
     const httpOptions : Object = {
       headers: new HttpHeaders({
         'Authorization' : 'Bearer ' +  token,

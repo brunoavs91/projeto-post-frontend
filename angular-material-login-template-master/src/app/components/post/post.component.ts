@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { PostService } from 'src/app/services/post.service';
 import { PostDTO } from 'src/app/models/post.dto';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -18,7 +20,8 @@ export class PostComponent implements OnInit {
   post = {} as PostDTO;
   imagemConvertida : string;
 
-  constructor(public storage: StorageService, public postService : PostService) { }
+  constructor(public storage: StorageService, public postService : PostService,
+     public usuarioService : UsuarioService, public routes :Router) { }
 
   ngOnInit() {
   }
@@ -46,14 +49,18 @@ preview() {
  
 onSubmit() {
   const formData = new FormData();
+  this.post.email= this.usuarioService.getEmail();
   formData.append('file', this.fileData);
-  this.postService.postImage(formData,this.post)
+  formData.append('post', JSON.stringify(this.post))
+  this.postService.postImage(formData)
     .subscribe(response => {
       console.log(response);
-      this.uploadedFilePath = response.data.filePath;
-      alert('SUCCESS !!');
+      alert('POSTADO COM SUCESSO');
+      this.routes.navigateByUrl('galeria');
     },error =>{}) 
   }
+
+
 sendPost(){
 this.post.imagem = this.convertToString(this.fileData);
   console.log(this.post)
